@@ -1,7 +1,7 @@
-import 'package:flutter_carousel/indicator/widget/bar_indicator.dart';
-import 'package:flutter_carousel/indicator/widget/bubble_indicator.dart';
-import 'package:flutter_carousel/indicator/widget/dot_indicator.dart';
-import 'package:flutter_carousel/indicator/widget/props.dart';
+import 'package:flutter_multi_carousel/indicator/widget/bar_indicator.dart';
+import 'package:flutter_multi_carousel/indicator/widget/bubble_indicator.dart';
+import 'package:flutter_multi_carousel/indicator/widget/dot_indicator.dart';
+import 'package:flutter_multi_carousel/indicator/widget/props.dart';
 import 'package:flutter/material.dart';
 
 class Indicator extends StatelessWidget {

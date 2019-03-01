@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flutter_carousel/indicator/widget/props.dart';
-import 'package:flutter_carousel/screen_ratio.dart';
+import 'package:flutter_multi_carousel/indicator/widget/props.dart';
+import 'package:flutter_multi_carousel/screen_ratio.dart';
 
 class BubbleIndicator extends AnimatedWidget {
   Props props;
