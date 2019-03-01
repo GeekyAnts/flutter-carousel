@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_carousel/indicator/widget/props.dart';
 
 class BarIndicator extends AnimatedWidget {
-  Props props;
+  final Props props;
   BarIndicator({this.props}) : super(listenable: props.controller);
   @override
   Widget build(BuildContext context) {

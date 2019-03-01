@@ -1,14 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_carousel/indicator/widget/props.dart';
-import 'package:flutter_multi_carousel/screen_ratio.dart';
+import 'package:flutter_multi_carousel/services/screen_ratio.dart';
 
 class DotIndicator extends AnimatedWidget {
   Color selectedColor;
   Color unselectedColor;
   Animatable<Color> background;
-  Props props;
-  double wf = ScreenRatio.widthRatio;
+  final Props props;
+  final double wf = ScreenRatio.widthRatio;
 
   DotIndicator({this.props}) : super(listenable: props.controller) {
     selectedColor = props.selectedColor ?? Colors.white;

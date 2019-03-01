@@ -13,26 +13,40 @@ dependencies:
 And install it using `flutter packages get` on your project folder. After that, just import the module and use it:
 
 ```dart
-import 'package:carousel/carousel.dart';
-//...
+import 'package:flutter/material.dart';
+import 'package:flutter_multi_carousel/carousel.dart';
 
-//...
+void main() => runApp(MyApp());
 
-Carousel(
-    height: 350.0,
-    width: 350,
-    type: "simple",
-    indicatorType: "bubble",
-    arrowColor: Colors.white,
-    axis: axis,
-    showArrow: true,
-    children: List.generate(
-        7,
-         (i) => Center(
-            child: Container(
-            color:Colors.red
-            ),)))),
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      home: CarouselExample(),
+    );
+  }
+}
 
+class CarouselExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Carousel(
+        height: 350.0,
+        width: 350,
+        type: "simple",
+        indicatorType: "bubble",
+        arrowColor: Colors.white,
+        axis: Axis.horizontal,
+        showArrow: true,
+        children: List.generate(
+            7,
+            (i) => Center(
+                  child: Container(color: Colors.red),
+                )));
+  }
+}
 ```
 
 ## For detailed demonstration refer this [GitHub](https://github.com/jaiswalshubham84/Flutter-Carousel) link
@@ -124,19 +138,9 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
     </tr>
 </table>
 <br></br>
-
-  <table style="width:100%">
-       <tr>
-            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/simple_carousel.gif"  height="450" /></td>
-            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/slide_swipe.gif"  height="450" /></td>
-            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/x_rotating.gif"  height="450" /></td>
-        </tr>
-      <tr>
-            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/y_rotating.gif"  height="450" /></td>
-            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/z_rotating.gif"  height="450" /></td>
-            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/multi_rotating.gif"  height="450" /></td>
-        </tr>
-    </table>
+| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/simple_carousel.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/slide_swipe.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/x_rotating.gif?raw=true) |
+| :---------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/y_rotating.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/y_rotating.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/z_rotating.gif?raw=true) |
 
 ## Credits
 

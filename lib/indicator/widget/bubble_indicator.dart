@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:flutter_multi_carousel/indicator/widget/props.dart';
-import 'package:flutter_multi_carousel/screen_ratio.dart';
+import 'package:flutter_multi_carousel/services/screen_ratio.dart';
 
 class BubbleIndicator extends AnimatedWidget {
-  Props props;
+  final Props props;
   double wf = ScreenRatio.widthRatio;
   PageController controller1;
 
