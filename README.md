@@ -15,9 +15,6 @@ And install it using `flutter packages get` on your project folder. After that, 
 ```dart
 import 'package:carousel/carousel.dart';
 //...
-// make  a list of assets you want show in carousel
- List<String> assetList = ['assets/1.jpeg','assets/2.jpeg','assets/3.jpeg','assets/4.jpeg',
- 'assets/5.jpeg','assets/6.jpeg','assets/7.jpeg'];
 
 //...
 
@@ -37,7 +34,9 @@ Carousel(
             ),)))),
 
 ```
+
 ## For detailed demonstration refer this [GitHub](https://github.com/jaiswalshubham84/Flutter-Carousel) link
+
 https://github.com/jaiswalshubham84/Flutter-Carousel
 
 ## Getting Startedslide
