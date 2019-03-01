@@ -138,5 +138,13 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
         </tr>
     </table>
 
+## Credits
+
+Developed by Gabriel Valério <jaiswal.shubham84@gmail.com>
+
+## Contributing
+
+Feel free to Contribute!
+
 For help getting started with Flutter, view our online
 [documentation](https://flutter.io/).
