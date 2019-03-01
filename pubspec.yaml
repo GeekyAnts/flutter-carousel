@@ -1,0 +1,17 @@
+name: flutter_carousel
+description: A Carousel Package to Flutter
+version: 0.1.0
+author: Shubham Jaiswal <jaiswal.shubham84@gmail.com>
+homepage: https://github.com/GeekyAnts/flutter-carousel
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
