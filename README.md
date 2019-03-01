@@ -37,6 +37,8 @@ Carousel(
             ),)))),
 
 ```
+## For detailed demonstration refer this [GitHub](https://github.com/jaiswalshubham84/Flutter-Carousel) link
+https://github.com/jaiswalshubham84/Flutter-Carousel
 
 ## Getting Startedslide
 
