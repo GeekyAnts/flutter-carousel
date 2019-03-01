@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel/carousel/slide_swipe.dart';
-import 'package:flutter_carousel/carousel/x_rotating_carousel.dart';
-import 'package:flutter_carousel/indicator/index.dart';
-import 'package:flutter_carousel/renderer.dart';
-import 'package:flutter_carousel/screen_ratio.dart';
+import 'package:flutter_multi_carousel/carousel/slide_swipe.dart';
+import 'package:flutter_multi_carousel/carousel/x_rotating_carousel.dart';
+import 'package:flutter_multi_carousel/indicator/index.dart';
+import 'package:flutter_multi_carousel/renderer.dart';
+import 'package:flutter_multi_carousel/screen_ratio.dart';
 import './carousel/multi_axis_carousel.dart';
 import './carousel/rotatingcarousel.dart';
 import './carousel/simple_carousel.dart';
