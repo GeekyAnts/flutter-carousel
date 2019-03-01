@@ -127,20 +127,20 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
 
   <table style="width:100%">
        <tr>
-            <td><img src="gifs/simple_carousel.gif"  height="450" /></td>
-            <td><img src="gifs/slide_swipe.gif"  height="450" /></td>
-            <td><img src="gifs/x_rotating.gif"  height="450" /></td>
+            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/simple_carousel.gif"  height="450" /></td>
+            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/slide_swipe.gif"  height="450" /></td>
+            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/x_rotating.gif"  height="450" /></td>
         </tr>
       <tr>
-            <td><img src="gifs/y_rotating.gif"  height="450" /></td>
-            <td><img src="gifs/z_rotating.gif"  height="450" /></td>
-            <td><img src="gifs/multi_rotating.gif"  height="450" /></td>
+            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/y_rotating.gif"  height="450" /></td>
+            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/z_rotating.gif"  height="450" /></td>
+            <td><img src="https://github.com/GeekyAnts/flutter-carousel/blob/master/gifs/multi_rotating.gif"  height="450" /></td>
         </tr>
     </table>
 
 ## Credits
 
-Developed by Gabriel Valério <jaiswal.shubham84@gmail.com>
+Developed by Shubham Jaiswal <jaiswal.shubham84@gmail.com>
 
 ## Contributing
 
