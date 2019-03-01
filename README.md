@@ -69,8 +69,8 @@ Carousel(
         <td>type</td>
         <td>String</td>
         <td>"simple"</td>
-        <td>Defines type of carousel. This field is required<br> Available carousel types are: "simple", "slideswiper",
-            "bubble", "xrotating",
+        <td>Defines type of carousel.<br> Available carousel types are: "simple", "slideswiper",
+             "xrotating",
             "yrotating", "zrotating", "multirotating"</br></td>
     </tr>
     <tr>
