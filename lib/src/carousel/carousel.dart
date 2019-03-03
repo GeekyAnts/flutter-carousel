@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_carousel/carousel/multi_axis_carousel.dart';
-import 'package:flutter_multi_carousel/carousel/rotatingcarousel.dart';
-import 'package:flutter_multi_carousel/carousel/simple_carousel.dart';
-import 'package:flutter_multi_carousel/carousel/slide_swipe.dart';
-import 'package:flutter_multi_carousel/carousel/x_rotating_carousel.dart';
-import 'package:flutter_multi_carousel/carousel/zrotatingcarousel.dart';
-import 'package:flutter_multi_carousel/indicator/index.dart';
-import 'package:flutter_multi_carousel/services/renderer.dart';
-import 'package:flutter_multi_carousel/services/screen_ratio.dart';
+import 'package:flutter_multi_carousel/src/carousel/multi_axis_carousel.dart';
+import 'package:flutter_multi_carousel/src/carousel/rotatingcarousel.dart';
+import 'package:flutter_multi_carousel/src/carousel/simple_carousel.dart';
+import 'package:flutter_multi_carousel/src/carousel/slide_swipe.dart';
+import 'package:flutter_multi_carousel/src/carousel/x_rotating_carousel.dart';
+import 'package:flutter_multi_carousel/src/carousel/zrotatingcarousel.dart';
+import 'package:flutter_multi_carousel/src/indicator/index.dart';
+import 'package:flutter_multi_carousel/src/services/renderer.dart';
+import 'package:flutter_multi_carousel/src/services/screen_ratio.dart';
 
 class Carousel extends StatefulWidget {
   final String type;
@@ -98,7 +98,7 @@ class _CarouselState extends State<Carousel> {
   }
 
   scrollPosition(dynamic updateRender, {String function}) {
-    updateRender(1, false);
+    updateRender(false);
 
     if ((widget.controller.page.round() == 0 && function == "back") ||
         widget.controller.page == widget.children.length - 1 &&
@@ -140,13 +140,13 @@ class _CarouselState extends State<Carousel> {
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[]..addAll(["back", "forward"]
-                        .map((f) => Renderer(1, (data, updateRender, active) {
+                        .map((f) => Renderer((updateRender, active) {
                               return GestureDetector(
                                 onTapUp: (d) {
                                   scrollPosition(updateRender, function: f);
                                 },
                                 onTapDown: (d) {
-                                  updateRender(1, true);
+                                  updateRender(true);
                                 },
                                 onLongPress: () {
                                   scrollPosition(updateRender, function: f);

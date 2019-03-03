@@ -1,7 +1,7 @@
-import 'package:flutter_multi_carousel/indicator/widget/bar_indicator.dart';
-import 'package:flutter_multi_carousel/indicator/widget/bubble_indicator.dart';
-import 'package:flutter_multi_carousel/indicator/widget/dot_indicator.dart';
-import 'package:flutter_multi_carousel/indicator/widget/props.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/bar_indicator.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/bubble_indicator.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/dot_indicator.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/props.dart';
 import 'package:flutter/material.dart';
 
 class Indicator extends StatelessWidget {
@@ -12,8 +12,6 @@ class Indicator extends StatelessWidget {
   final int totalPage;
   final double width;
   final PageController controller;
-  Props props;
-  Widget indecatorWidget;
 
   Indicator({
     this.currentPage,
@@ -23,20 +21,18 @@ class Indicator extends StatelessWidget {
     this.width,
     this.totalPage,
     this.controller,
-  }) {
-    props = Props(
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Props props = Props(
         currentPage: currentPage,
         selectedColor: selectedColor,
         totalPage: this.totalPage,
         unSelectedColor: unSelectedColor,
         width: width,
         controller: controller);
-    indecatorWidget = getIndicator(indicatorName, props);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return indecatorWidget;
+    return getIndicator(indicatorName, props);
   }
 }
 

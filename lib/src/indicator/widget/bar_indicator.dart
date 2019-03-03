@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_carousel/indicator/widget/props.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/props.dart';
 
 class BarIndicator extends AnimatedWidget {
   final Props props;

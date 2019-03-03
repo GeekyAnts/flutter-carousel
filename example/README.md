@@ -1,16 +1,50 @@
 # example
 
-A new Flutter project.
+flutter_multi_carousel example.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_multi_carousel/carousel.dart';
 
-A few resources to get you started if this is your first Flutter project:
+void main() => runApp(MyApp());
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      home: CarouselExample(),
+    );
+  }
+}
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+class CarouselExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Carousel(
+        height: 350.0,
+        width: 350,
+        type: "simple",
+        indicatorType: "bubble",
+        arrowColor: Colors.white,
+        axis: Axis.horizontal,
+        showArrow: true,
+        children: List.generate(
+            7,
+            (i) => Center(
+                  child: Container(color: Colors.red),
+                )));
+  }
+}
+```
+
+## For detailed demonstration refer this [GitHub](https://github.com/jaiswalshubham84/Flutter-Carousel) link
+
+https://github.com/jaiswalshubham84/Flutter-Carousel
+
+For help getting started with Flutter, view
+[online documentation](https://flutter.io/docs), which offers tutorials,
+samples, guidance on full API reference.

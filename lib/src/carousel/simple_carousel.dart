@@ -3,16 +3,13 @@ import 'dart:math' as math;
 
 class SimpleCarousel extends StatelessWidget {
   Widget carouserBuilder;
-
   int currentPage;
   bool initial = true;
   final dynamic props;
 
   SimpleCarousel(
     this.props,
-  ) {
-    currentPage = 0;
-  }
+  );
 
   initiate(index) {
     double value;

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:flutter_multi_carousel/indicator/widget/props.dart';
-import 'package:flutter_multi_carousel/services/screen_ratio.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/props.dart';
+import 'package:flutter_multi_carousel/src/services/screen_ratio.dart';
 
 class BubbleIndicator extends AnimatedWidget {
   final Props props;
-  double wf = ScreenRatio.widthRatio;
-  PageController controller1;
-
   BubbleIndicator({
     this.props,
-  }) : super(listenable: props.controller) {}
+  }) : super(listenable: props.controller);
   transformValue(index) {
     if (props.controller.hasClients) {
       return props.controller.hasClients
@@ -30,6 +27,7 @@ class BubbleIndicator extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
+    double wf = ScreenRatio.widthRatio;
     return new Container(
       alignment: Alignment.topLeft,
       height: 40.0,

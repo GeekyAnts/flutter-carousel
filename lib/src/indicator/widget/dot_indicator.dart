@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_carousel/indicator/widget/props.dart';
-import 'package:flutter_multi_carousel/services/screen_ratio.dart';
+import 'package:flutter_multi_carousel/src/indicator/widget/props.dart';
+import 'package:flutter_multi_carousel/src/services/screen_ratio.dart';
 
 class DotIndicator extends AnimatedWidget {
   Color selectedColor;

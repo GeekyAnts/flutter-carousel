@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-typedef OnCall = Function(int, [bool]);
-typedef Widget Builder(int data, OnCall rebuild, bool active);
+typedef OnCall = Function(bool);
+typedef Widget Builder(OnCall rebuild, bool active);
 
 class Renderer extends StatefulWidget {
   final Builder builder;
-  int currentPage;
-  bool active;
-  Widget child;
-
-  Renderer(this.currentPage, @required this.builder);
+  Renderer(this.builder);
 
   @override
   _RendererState createState() => _RendererState();
@@ -22,19 +18,17 @@ class _RendererState extends State<Renderer> {
   @override
   initState() {
     super.initState();
-    data = widget.currentPage;
     active = false;
   }
 
-  updateRenderer(pageIndex, [bool status]) {
+  updateRenderer(bool status) {
     setState(() {
-      data = pageIndex;
       active = status;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(data, updateRenderer, active);
+    return widget.builder(updateRenderer, active);
   }
 }
