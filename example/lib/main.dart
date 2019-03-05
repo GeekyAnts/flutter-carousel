@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Carousel Demo',
       home: CarouselExample(),
     );
   }
@@ -17,18 +17,22 @@ class MyApp extends StatelessWidget {
 class CarouselExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Carousel(
-        height: 350.0,
-        width: 350,
-        type: "simple",
-        indicatorType: "bubble",
-        arrowColor: Colors.white,
-        axis: Axis.horizontal,
-        showArrow: true,
-        children: List.generate(
-            7,
-            (i) => Center(
-                  child: Container(color: Colors.red),
-                )));
+    return Scaffold(
+      body: Center(
+        child: Carousel(
+            height: 350.0,
+            width: 350,
+            type: "slideswiper",
+            indicatorType: "bubble",
+            arrowColor: Colors.white,
+            axis: Axis.horizontal,
+            showArrow: true,
+            children: List.generate(
+                7,
+                (i) => Center(
+                      child: Container(color: Colors.red),
+                    ))),
+      ),
+    );
   }
 }

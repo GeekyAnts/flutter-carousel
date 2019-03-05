@@ -133,71 +133,76 @@ class _CarouselState extends State<Carousel> {
         child: Stack(
       children: <Widget>[
         Center(child: getCarousel(widget)),
-        Container(
-            margin: EdgeInsets.only(top: widget.height / 4),
-            child: widget.showArrow == null || widget.showArrow == false
-                ? SizedBox()
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[]..addAll(["back", "forward"]
-                        .map((f) => Renderer((updateRender, active) {
-                              return GestureDetector(
-                                onTapUp: (d) {
-                                  scrollPosition(updateRender, function: f);
-                                },
-                                onTapDown: (d) {
-                                  updateRender(true);
-                                },
-                                onLongPress: () {
-                                  scrollPosition(updateRender, function: f);
-                                },
-                                child: Container(
-                                  height: widget.height / 2,
-                                  width: 40.0,
-                                  color: active
-                                      ? Color(0x77121212)
-                                      : Colors.transparent,
-                                  child: Icon(
-                                    f == "back"
-                                        ? Icons.arrow_back_ios
-                                        : Icons.arrow_forward_ios,
+        Center(
+          child: Container(
+              height: widget.height,
+              child: widget.showArrow == null || widget.showArrow == false
+                  ? SizedBox()
+                  : Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[]..addAll(["back", "forward"]
+                          .map((f) => Renderer((updateRender, active) {
+                                return GestureDetector(
+                                  onTapUp: (d) {
+                                    scrollPosition(updateRender, function: f);
+                                  },
+                                  onTapDown: (d) {
+                                    updateRender(true);
+                                  },
+                                  onLongPress: () {
+                                    scrollPosition(updateRender, function: f);
+                                  },
+                                  child: Container(
+                                    height: widget.height / 2,
+                                    width: 40.0,
                                     color: active
-                                        ? Colors.white
-                                        : widget.arrowColor != null
-                                            ? widget.arrowColor
-                                            : Colors.black,
+                                        ? Color(0x77121212)
+                                        : Colors.transparent,
+                                    child: Icon(
+                                      f == "back"
+                                          ? Icons.arrow_back_ios
+                                          : Icons.arrow_forward_ios,
+                                      color: active
+                                          ? Colors.white
+                                          : widget.arrowColor != null
+                                              ? widget.arrowColor
+                                              : Colors.black,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }))),
-                  )),
-        widget.showIndicator != true
-            ? SizedBox()
-            : Container(
-                height: widget.height,
-                alignment: Alignment.bottomCenter,
-                child: Wrap(
-                  children: <Widget>[
-                    Container(
-                      width: widget.width,
-                      alignment: Alignment.bottomCenter,
-                      color:
-                          (widget.indicatorBackgroundColor ?? Color(0xff121212))
-                              .withOpacity(
-                                  widget.indicatorBackgroundOpacity ?? 0.5),
-                      padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-                      child: Indicator(
-                        indicatorName: widget.indicatorType,
-                        selectedColor: widget.activeIndicatorColor,
-                        unSelectedColor: widget.unActiveIndicatorColor,
-                        totalPage: widget.children.length,
+                                );
+                              }))),
+                    )),
+        ),
+        Center(
+          child: widget.showIndicator != true
+              ? SizedBox()
+              : Container(
+                  height: widget.height,
+                  alignment: Alignment.bottomCenter,
+                  child: Wrap(
+                    children: <Widget>[
+                      Container(
                         width: widget.width,
-                        controller: widget.controller,
+                        alignment: Alignment.bottomCenter,
+                        color: (widget.indicatorBackgroundColor ??
+                                Color(0xff121212))
+                            .withOpacity(
+                                widget.indicatorBackgroundOpacity ?? 0.5),
+                        padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
+                        child: Indicator(
+                          indicatorName: widget.indicatorType,
+                          selectedColor: widget.activeIndicatorColor,
+                          unSelectedColor: widget.unActiveIndicatorColor,
+                          totalPage: widget.children.length,
+                          width: widget.width,
+                          controller: widget.controller,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+        ),
       ],
     ));
   }
