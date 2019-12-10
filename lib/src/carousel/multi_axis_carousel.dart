@@ -5,8 +5,10 @@ class MultiAxisCarouselState extends StatelessWidget {
   int currentPage;
   bool initial = true;
   final dynamic props;
+  Function updatePosition;
+
   MultiAxisCarouselState(
-    this.props,
+    this.props, this.updatePosition
   ) {
     currentPage = 0;
   }
@@ -26,6 +28,7 @@ class MultiAxisCarouselState extends StatelessWidget {
         scrollDirection: props.axis,
         itemCount: count,
         onPageChanged: (i) {
+          updatePosition(i);
           currentPage = i;
           if (props.onPageChange != null) {
             props.onPageChange(i);

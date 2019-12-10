@@ -140,6 +140,12 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
         <td>0.5</td>
         <td>Defines the opacity of indicator background</td>
     </tr>
+    <tr>
+        <td>allowWrap</td>
+        <td>bool</td>
+        <td>true</td>
+        <td>Defines if the carousel should wrap once you reach the end or if your at the begining and go left if it should take you to the end</td>
+    </tr>
 </table>
 <br></br>
 
