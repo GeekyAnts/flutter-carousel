@@ -5,9 +5,10 @@ class SlideSwipe extends StatelessWidget {
   int currentPage;
   bool initial;
   final dynamic props;
+  Function updatePosition;
 
   SlideSwipe(
-    this.props,
+    this.props, this.updatePosition
   );
 
   initiate(index) {
@@ -34,6 +35,7 @@ class SlideSwipe extends StatelessWidget {
         controller: props.controller,
         itemCount: count,
         onPageChanged: (i) {
+          updatePosition(i);
           if (props.onPageChange != null) {
             props.onPageChange(i);
           }

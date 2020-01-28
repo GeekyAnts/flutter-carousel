@@ -5,8 +5,10 @@ class ZcarouselState extends StatelessWidget {
   int currentPage;
   bool initial = true;
   final dynamic props;
+  Function updatePosition;
+
   ZcarouselState(
-    this.props,
+    this.props, this.updatePosition,
   ) {
     currentPage = 0;
   }
@@ -27,6 +29,10 @@ class ZcarouselState extends StatelessWidget {
         scrollDirection: props.axis,
         itemCount: count,
         onPageChanged: (i) {
+          updatePosition(i);
+          if (props.onPageChange != null) {
+            props.onPageChange(i);
+          }
           currentPage = i;
         },
         itemBuilder: (context, index) => builder(index));
@@ -59,7 +65,7 @@ class ZcarouselState extends StatelessWidget {
       builder: (context, child) {
         double value = 1.0;
         value = initial
-            ? initiate(index) ?? props.controller1.page - index
+            ? initiate(index) ?? props.controller.page - index
             : value = props.controller.page - index;
         value = (1 - (value.abs() * 0.2)).clamp(0.0, 1.0);
         return new Column(

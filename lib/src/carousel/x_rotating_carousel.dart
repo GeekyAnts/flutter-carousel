@@ -5,9 +5,10 @@ class XcarouselState extends StatelessWidget {
   int currentPage;
   bool initial = true;
   final dynamic props;
+  Function updatePosition;
 
   XcarouselState(
-    this.props,
+    this.props, this.updatePosition,
   ) {
     currentPage = 0;
   }
@@ -28,6 +29,7 @@ class XcarouselState extends StatelessWidget {
         scrollDirection: props.axis,
         itemCount: count,
         onPageChanged: (i) {
+          updatePosition(i);
           if (props.onPageChange != null) {
             props.onPageChange(i);
           }
