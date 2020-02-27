@@ -3,10 +3,11 @@ import 'package:flutter_multi_carousel/src/indicator/widget/bubble_indicator.dar
 import 'package:flutter_multi_carousel/src/indicator/widget/dot_indicator.dart';
 import 'package:flutter_multi_carousel/src/indicator/widget/props.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_carousel/src/services/type_declaration.dart';
 
 class Indicator extends StatelessWidget {
   final int currentPage;
-  final String indicatorName;
+  final dynamic indicatorName;
   final Color selectedColor;
   final Color unSelectedColor;
   final int totalPage;
@@ -37,32 +38,61 @@ class Indicator extends StatelessWidget {
 }
 
 Widget getIndicator(
-  String indicatorName,
+  var indicatorName,
   Props props,
 ) {
+  IndicatorTypes indicatorType = indicatorName.runtimeType == IndicatorTypes
+      ? indicatorName
+      : _getIndicatorType(indicatorName);
+
   Widget indicator;
-  switch (indicatorName) {
-    case "bar":
+
+  switch (indicatorType) {
+    case IndicatorTypes.bar:
       {
         indicator = BarIndicator(
           props: props,
         );
       }
       break;
-    case "bubble":
+    case IndicatorTypes.bubble:
       {
         indicator = BubbleIndicator(
           props: props,
         );
       }
       break;
-    case "dot":
+    case IndicatorTypes.dot:
       {
         indicator = DotIndicator(
           props: props,
         );
       }
       break;
+    default:
+      return SizedBox();
   }
   return indicator;
+}
+
+IndicatorTypes _getIndicatorType(String indicatorName) {
+  switch (indicatorName) {
+    case "bar":
+      {
+        return IndicatorTypes.bar;
+      }
+      break;
+    case "bubble":
+      {
+        return IndicatorTypes.bubble;
+      }
+      break;
+    case "dot":
+      {
+        return IndicatorTypes.dot;
+      }
+      break;
+    default:
+      return null;
+  }
 }

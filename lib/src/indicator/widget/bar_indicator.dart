@@ -13,7 +13,7 @@ class BarIndicator extends AnimatedWidget {
         color: props.unSelectedColor ?? Color(0xff4C5158),
         padding: new EdgeInsets.only(
           left: (((props.width * 0.8) / props.totalPage) *
-              (props.controller.page ?? 0)),
+              (props.controller.page ?? props.controller.initialPage)),
         ),
         child: new Container(
           width: (props.width * 0.8) / props.totalPage,

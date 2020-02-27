@@ -1,3 +1,5 @@
+library carousel;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_carousel/src/carousel/multi_axis_carousel.dart';
 import 'package:flutter_multi_carousel/src/carousel/rotatingcarousel.dart';
@@ -8,11 +10,22 @@ import 'package:flutter_multi_carousel/src/carousel/zrotatingcarousel.dart';
 import 'package:flutter_multi_carousel/src/indicator/index.dart';
 import 'package:flutter_multi_carousel/src/services/renderer.dart';
 import 'package:flutter_multi_carousel/src/services/screen_ratio.dart';
+import 'package:flutter_multi_carousel/src/services/type_declaration.dart';
+
+typedef OnCarouselTap = Function(int);
 
 class Carousel extends StatefulWidget {
-  final String type;
+  final dynamic type;
 
+  ///The scroll Axis of Carousel
   final Axis axis;
+
+  final int initialPage;
+
+  dynamic updatePositionCallBack;
+
+  /// call back function triggers when gesture tap is registered
+  final OnCarouselTap onCarouselTap;
 
   /// This feild is required.
   ///
@@ -31,7 +44,7 @@ class Carousel extends StatefulWidget {
   final Color activeIndicatorColor;
 
   ///defines type of indicator to carousel
-  final String indicatorType;
+  final dynamic indicatorType;
 
   final bool showArrow;
 
@@ -67,8 +80,10 @@ class Carousel extends StatefulWidget {
   PageController controller;
   int currentPage = 0;
 
+  GlobalKey key;
+
   Carousel(
-      {Key key,
+      {this.key,
       @required this.height,
       @required this.width,
       @required this.type,
@@ -83,8 +98,12 @@ class Carousel extends StatefulWidget {
       this.indicatorBackgroundColor,
       this.activeIndicatorColor,
       this.allowWrap = true,
+      this.initialPage,
+      this.onCarouselTap,
       @required this.children})
-      : super(key: key) {
+      : assert(initialPage >= 0 && initialPage < children.length,
+            "intialPage must be a int value between 0 and length of children"),
+        super(key: key) {
     this.createState();
   }
   @override
@@ -97,11 +116,34 @@ class _CarouselState extends State<Carousel> {
   int position = 0;
   double animatedFactor;
   double offset;
+  final GlobalKey<RendererState> rendererKey1 = new GlobalKey();
+  final GlobalKey<RendererState> rendererKey2 = new GlobalKey();
+  @override
+  void initState() {
+    // TODO: implement initState
+    widget.updatePositionCallBack = updatePosition;
+    super.initState();
+  }
 
   @override
   dispose() {
     widget.controller.dispose();
     super.dispose();
+  }
+
+  updatePosition(int index) {
+    if (widget.controller.page.round() == widget.children.length - 1) {
+      rendererKey2.currentState.updateRenderer(false);
+    }
+    if (widget.controller.page.round() == widget.children.length - 2) {
+      rendererKey2.currentState.updateRenderer(false);
+    }
+    if (widget.controller.page.round() == 1) {
+      rendererKey1.currentState.updateRenderer(false);
+    }
+    if (widget.controller.page.round() == 0) {
+      rendererKey1.currentState.updateRenderer(false);
+    }
   }
 
   scrollPosition(dynamic updateRender, {String function}) {
@@ -128,21 +170,32 @@ class _CarouselState extends State<Carousel> {
 
   @override
   Widget build(BuildContext context) {
-    offset = widget.type == "slideswiper" ? 0.8 : 1.0;
+    offset = (widget.type.toString().toLowerCase() == "slideswiper" ||
+            widget.type == Types.slideSwiper)
+        ? 0.8
+        : 1.0;
     Size size = MediaQuery.of(context).size;
     ScreenRatio.setScreenRatio(size: size);
     animatedFactor =
         widget.axis == Axis.horizontal ? widget.width : widget.height;
     widget.controller = new PageController(
-      initialPage: 0,
+      initialPage: widget.initialPage ?? 0,
       keepPage: true,
       viewportFraction: offset,
     );
-    dynamic carousel = getCarousel(widget);
+    dynamic carousel = _getCarousel(widget);
     return Container(
         child: Stack(
       children: <Widget>[
-        Center(child: carousel),
+        Center(
+            child: GestureDetector(
+          child: carousel,
+          onTap: () {
+            if (widget.onCarouselTap != null) {
+              widget.onCarouselTap(widget.controller.page.round());
+            }
+          },
+        )),
         Center(
           child: Container(
               height: widget.height,
@@ -151,47 +204,55 @@ class _CarouselState extends State<Carousel> {
                   : Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[]..addAll(["back", "forward"]
-                          .map((f) => Renderer((updateRender, active) {
-                                return Visibility(
-                                  visible: widget.allowWrap
-                                      ? true
-                                      : (f == 'back' && position == 0 ||
-                                              f == 'forward' &&
-                                              position ==
-                                                  widget.children.length - 1
-                                          ? false
-                                          : true),
-                                  child: GestureDetector(
-                                    onTapUp: (d) {
-                                      scrollPosition(updateRender, function: f);
-                                    },
-                                    onTapDown: (d) {
-                                      updateRender(true);
-                                    },
-                                    onLongPress: () {
-                                      scrollPosition(updateRender, function: f);
-                                    },
-                                    child: Container(
-                                      height: widget.height / 2,
-                                      width: 40.0,
+                      children: <Widget>[]..addAll([
+                          "back",
+                          "forward"
+                        ].map((f) =>
+                            Renderer(f == 'back' ? rendererKey1 : rendererKey2,
+                                (updateRender, active) {
+                              return Visibility(
+                                visible: widget.allowWrap
+                                    ? true
+                                    : (f == 'back' &&
+                                                widget?.controller?.page
+                                                        ?.round() ==
+                                                    0 ||
+                                            f == 'forward' &&
+                                                widget.controller.page
+                                                        ?.round() ==
+                                                    widget.children.length - 1
+                                        ? false
+                                        : true),
+                                child: GestureDetector(
+                                  onTapUp: (d) {
+                                    scrollPosition(updateRender, function: f);
+                                  },
+                                  onTapDown: (d) {
+                                    updateRender(true);
+                                  },
+                                  onLongPress: () {
+                                    scrollPosition(updateRender, function: f);
+                                  },
+                                  child: Container(
+                                    height: widget.height / 2,
+                                    width: 40.0,
+                                    color: active
+                                        ? Color(0x77121212)
+                                        : Colors.transparent,
+                                    child: Icon(
+                                      f == "back"
+                                          ? Icons.arrow_back_ios
+                                          : Icons.arrow_forward_ios,
                                       color: active
-                                          ? Color(0x77121212)
-                                          : Colors.transparent,
-                                      child: Icon(
-                                        f == "back"
-                                            ? Icons.arrow_back_ios
-                                            : Icons.arrow_forward_ios,
-                                        color: active
-                                            ? Colors.white
-                                            : widget.arrowColor != null
-                                                ? widget.arrowColor
-                                                : Colors.black,
-                                      ),
+                                          ? Colors.white
+                                          : widget.arrowColor != null
+                                              ? widget.arrowColor
+                                              : Colors.black,
                                     ),
                                   ),
-                                );
-                              }))),
+                                ),
+                              );
+                            }))),
                     )),
         ),
         Center(
@@ -226,50 +287,85 @@ class _CarouselState extends State<Carousel> {
       ],
     ));
   }
-  getCarousel(dynamic widget) {
+
+  _getCarousel(Carousel widget) {
     dynamic carousel;
-    switch (widget.type.toLowerCase()) {
-      case "simple":
+    dynamic type = widget.type.runtimeType == Types
+        ? widget.type
+        : _getType(widget.type.toLowerCase());
+
+    switch (type) {
+      case Types.simple:
         {
-          carousel = SimpleCarousel(widget, updatePosition);
+          carousel = SimpleCarousel(widget);
         }
         break;
-      case "slideswiper":
+      case Types.slideSwiper:
         {
-          carousel = SlideSwipe(widget, updatePosition);
+          carousel = SlideSwipe(widget);
         }
         break;
 
-      case "xrotating":
+      case Types.xRotating:
         {
-          carousel = XcarouselState(widget, updatePosition);
+          carousel = XcarouselState(widget);
         }
         break;
-      case "yrotating":
+      case Types.yRotating:
         {
-          carousel = RotatingCarouselState(widget, updatePosition);
+          carousel = RotatingCarouselState(widget);
         }
         break;
-      case "zrotating":
+      case Types.zRotating:
         {
-          carousel = ZcarouselState(widget, updatePosition);
+          carousel = ZcarouselState(widget);
         }
         break;
-      case "multirotating":
+      case Types.multiRotating:
         {
-          carousel = MultiAxisCarouselState(widget, updatePosition);
+          carousel = MultiAxisCarouselState(widget);
         }
         break;
-      default:
-        carousel = SimpleCarousel(widget, updatePosition);
-        break;
+      // default:
+      //   carousel = SimpleCarousel(widget);
+      //   break;
     }
     return carousel;
   }
+}
 
-  updatePosition(int index){
-    setState(() {
-      position = index;
-    });
+_getType(String type) {
+  switch (type) {
+    case "simple":
+      {
+        return Types.simple;
+      }
+      break;
+    case "slideswiper":
+      {
+        return Types.slideSwiper;
+      }
+      break;
+
+    case "xrotating":
+      {
+        return Types.xRotating;
+      }
+      break;
+    case "yrotating":
+      {
+        return Types.yRotating;
+      }
+      break;
+    case "zrotating":
+      {
+        return Types.zRotating;
+      }
+      break;
+    case "multirotating":
+      {
+        return Types.multiRotating;
+      }
+      break;
   }
 }

@@ -22,15 +22,21 @@ class CarouselExample extends StatelessWidget {
         child: Carousel(
             height: 350.0,
             width: 350,
-            type: "slideswiper",
-            indicatorType: "bubble",
-            arrowColor: Colors.white,
+            initialPage: 3,
+            allowWrap: false,
+            type: Types.slideSwiper,
+            onCarouselTap: (i) {
+              print("onTap $i");
+            },
+            indicatorType: IndicatorTypes.bar,
+            arrowColor: Colors.black,
             axis: Axis.horizontal,
             showArrow: true,
             children: List.generate(
                 7,
                 (i) => Center(
-                      child: Container(color: Colors.red),
+                      child:
+                          Container(color: Colors.red.withOpacity((i + 1) / 7)),
                     ))),
       ),
     );

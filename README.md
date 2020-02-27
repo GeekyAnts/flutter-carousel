@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Carousel Demo',
       home: CarouselExample(),
     );
   }
@@ -37,20 +37,27 @@ class CarouselExample extends StatelessWidget {
         child: Carousel(
             height: 350.0,
             width: 350,
-            type: "slideswiper",
-            indicatorType: "bubble",
-            arrowColor: Colors.white,
+            initialPage: 3,
+            allowWrap: false,
+            type: Types.slideSwiper,
+            onCarouselTap: (i) {
+              print("onTap $i");
+            },
+            indicatorType: IndicatorTypes.bar,
+            arrowColor: Colors.black,
             axis: Axis.horizontal,
             showArrow: true,
             children: List.generate(
                 7,
                 (i) => Center(
-                      child: Container(color: Colors.red),
+                      child:
+                          Container(color: Colors.red.withOpacity((i + 1) / 7)),
                     ))),
       ),
     );
   }
 }
+
 ```
 
 ## For detailed demonstration refer this [GitHub](https://github.com/jaiswalshubham84/Flutter-Carousel) link
@@ -93,10 +100,16 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
             "yrotating", "zrotating", "multirotating"</br></td>
     </tr>
     <tr>
-        <td>showArrow</td>
-        <td>Bool</td>
-        <td>true</td>
-        <td>choice to show arrow in carousel</td>
+        <td>onCarouselTap</td>
+        <td> Function</td>
+        <td>null</td>
+        <td>A callback function  </td>
+    </tr>
+        <tr>
+        <td>arrowColor</td>
+        <td>Color</td>
+        <td>Colors.white</td>
+        <td>Define the color of arrow</td>
     </tr>
     <tr>
         <td>arrowColor</td>
@@ -149,13 +162,16 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
 </table>
 <br></br>
 
-| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/simple_carousel.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/slide_swipe.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/x_rotating.gif?raw=true)     |
-| :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
-| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/y_rotating.gif?raw=true)      | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/z_rotating.gif?raw=true)  | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/multi_rotating.gif?raw=true) |
+| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/simple_carousel.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/slide_swipe.gif?raw=true)  |
+| :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/x_rotating.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/y_rotating.gif?raw=true)  |
+| :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+| ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/z_rotating.gif?raw=true)      | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/multi_rotating.gif?raw=true)  |
 
 ## Credits
 
 Developed by Shubham Jaiswal <jaiswal.shubham84@gmail.com>
+
 
 ## Contributing
 

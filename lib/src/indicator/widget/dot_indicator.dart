@@ -29,7 +29,9 @@ class DotIndicator extends AnimatedWidget {
     if (props.controller.hasClients) {
       value = max(
         0.0,
-        1.0 - ((props.controller.page ?? 0.0) - index).abs(),
+        1.0 -
+            ((props.controller.page ?? props.controller.initialPage) - index)
+                .abs(),
       );
     }
     return value ?? 0.0;

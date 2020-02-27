@@ -6,11 +6,8 @@ class SimpleCarousel extends StatelessWidget {
   int currentPage;
   bool initial = true;
   final dynamic props;
-  Function updatePosition;
 
-  SimpleCarousel(
-    this.props, this.updatePosition
-  );
+  SimpleCarousel(this.props);
 
   initiate(index) {
     double value;
@@ -28,7 +25,7 @@ class SimpleCarousel extends StatelessWidget {
         controller: props.controller,
         itemCount: props.children.length,
         onPageChanged: (i) {
-          updatePosition(i);
+          props.updatePositionCallBack(i);
           currentPage = i;
           if (props.onPageChange != null) {
             props.onPageChange(i);
@@ -59,9 +56,13 @@ class SimpleCarousel extends StatelessWidget {
       builder: (context, child) {
         double value = 1.0;
         value = initial
-            ? initiate(index) ?? controller1.page - index
+            ? initiate(index) ??
+                // controller1?.page - index
+                // 3
+                0
             : controller1.page - index;
         value = (1 - (value.abs())).clamp(0.0, 1.0);
+
         return new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

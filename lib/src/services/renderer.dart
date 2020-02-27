@@ -5,13 +5,14 @@ typedef Widget Builder(OnCall rebuild, bool active);
 
 class Renderer extends StatefulWidget {
   final Builder builder;
-  Renderer(this.builder);
+  final Key key;
+  Renderer(this.key, this.builder) : super(key: key);
 
   @override
-  _RendererState createState() => _RendererState();
+  RendererState createState() => RendererState();
 }
 
-class _RendererState extends State<Renderer> {
+class RendererState extends State<Renderer> {
   int data;
   bool active;
 
@@ -21,7 +22,7 @@ class _RendererState extends State<Renderer> {
     active = false;
   }
 
-  updateRenderer(bool status) {
+  updateRenderer(bool status, [String a]) {
     setState(() {
       active = status;
     });

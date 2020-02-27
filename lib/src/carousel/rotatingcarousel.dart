@@ -5,9 +5,8 @@ class RotatingCarouselState extends StatelessWidget {
   int currentPage;
   bool initial = true;
   final dynamic props;
-  Function updatePosition;
 
-  RotatingCarouselState(this.props, this.updatePosition) {
+  RotatingCarouselState(this.props) {
     currentPage = 0;
   }
 
@@ -27,7 +26,7 @@ class RotatingCarouselState extends StatelessWidget {
         controller: props.controller,
         itemCount: count,
         onPageChanged: (i) {
-          updatePosition(i);
+          props.updatePositionCallBack(i);
           if (props.onPageChange != null) {
             props.onPageChange(i);
           }
@@ -52,7 +51,9 @@ class RotatingCarouselState extends StatelessWidget {
       builder: (context, child) {
         double value = 1.0;
         value = initial
-            ? initiate(index) ?? controller1.page - index
+            ? initiate(index) ??
+                //  controller1.page - index
+                0
             : controller1.page - index;
         value = (1 - (value.abs() * .2)).clamp(0.0, 1.0);
         return new RotationTransition(
