@@ -165,7 +165,7 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
 | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/simple_carousel.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/slide_swipe.gif?raw=true)  |
 | :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
 | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/x_rotating.gif?raw=true) | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/y_rotating.gif?raw=true)  |
-| :-------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------- |
+|  | |
 | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/z_rotating.gif?raw=true)      | ![](https://github.com/jaiswalshubham84/readme/blob/master/gifs/multi_rotating.gif?raw=true)  |
 
 ## Credits
