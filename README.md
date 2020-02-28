@@ -93,11 +93,9 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
     </tr>
     <tr>
         <td>type</td>
-        <td>String</td>
+        <td>Types</td>
         <td>"simple"</td>
-        <td>Defines type of carousel.<br> Available carousel types are: "simple", "slideswiper",
-             "xrotating",
-            "yrotating", "zrotating", "multirotating"</br></td>
+        <td>Defines type of carousel.<br> for ex: Types.simple, Types.slideSwiper, Types.xRotating, Types.yRotating, Types.zRotating, Types.multiRotating</br></td>
     </tr>
     <tr>
         <td>onCarouselTap</td>
@@ -125,9 +123,15 @@ https://github.com/jaiswalshubham84/Flutter-Carousel
     </tr>
     <tr>
         <td>indicatorType</td>
-        <td>String</td>
+        <td>IndicatorTypes</td>
         <td>bar</td>
-        <td>Defines the type of indicator.<br> Available indicator types are: "bar", "dot", "bubble"</br></td>
+        <td>Defines the type of indicator.<br> For ex: IndicatorTypes.bar, IndicatorTypes.dot, IndicatorTypes.bubble</br></td>
+    </tr>
+        <tr>
+        <td>initialPage</td>
+        <td>int</td>
+        <td>0</td>
+        <td>Start your carousel with custom initial page number</td>
     </tr>
     <tr>
         <td>activeIndicatorColor</td>
